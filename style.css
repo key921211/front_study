@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-size: 2em;
+}
+
+h1,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  /* max-width: 1000px;
+  margin: 0 auto; */
+  background-color: hotpink;
+}
+
+.container:after {
+  /*가상 엘리먼트 추가*/
+  content: "";
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+}
+
+.item {
+  float: left;
+  padding: 5%;
+}
+
+.item-a {
+  width: 30%;
+  background-color: yellow;
+}
+
+.item-b {
+  width: 50%;
+  background-color: yellowgreen;
+}
+
+footer {
+  clear: both; /*float left right 제거*/
+  background-color: gray;
+}
