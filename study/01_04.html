@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .world {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80vw; /*창크기 100에서 60*/
+            height: 80vh;
+            background: #fff000;
+            
+
+        }
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;            
+            width: 100px;
+            height: 150px;
+            margin: 1em;
+            border-radius: 0.5em; /*em : element 폰트사이즈 변화에 비례하도록*/
+            font-size: 1.5rem; /*rem : html에 비례*/
+            background: red;
+            transition:  1s;
+            transform: rotateY(0deg); /*처음에 0도로 해놓으면 브라우저가 미리준비함*/
+        }
+
+        .world:hover .card{
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="world">
+        <div class="card">CARD</div>
+        <div class="card">CARD</div>
+        <div class="card">CARD</div>
+    </div>
+</body>
+</html>
