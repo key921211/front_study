@@ -21,7 +21,7 @@
             margin: 1em;
             transition:  1s;
             transform: rotateY(0deg); 
-            transform-style: preserve-3d; /*card 안에 있는 element 까지 3d효과를 주기위해 IE에서는 지원을 안함*/
+            transform-style: preserve-3d; /*card 안에 있는 element 까지 3d효과를 주기위해*/
             transform-origin: left;
         }
         
@@ -30,13 +30,16 @@
             align-items: center;
             justify-content: center;   
             position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 150px;
+            margin : -75px 0 0 -50px;
             border-radius: 0.5em; 
             font-size: 1.5rem; 
-            backface-visibility: hidden; /*뒷면이 안보이게*/
+            -webkit-backface-visibility: hidden; /*사파리에서 -webkit접두어가 필요 -moz 모질라 -ms  mssoft -o opera*/
+            backface-visibility: hidden; /*접두어가 안붙은 표준스타일은 마지막에*/
+            transition:  1s;
         }
 
         .card-side-front { 
@@ -48,17 +51,22 @@
             background: red;   
             transform: rotateY(180deg); /*뒷면이 180도 돌아가 있어야함*/ 
         }
-        .world:hover .card{
-            transform: rotateY(-180deg);
+
+        .world:hover .card-side-front{
+            transform: rotateY(180deg);
+        }
+
+        .world:hover .card-side-back{
+            transform: rotateY(360deg);
         }
     </style>
 </head>
 <body>
     <div class="world">
-        <div class="card">
+        <!-- <div class="card"> -->
             <div class="card-side card-side-front">F</div>
             <div class="card-side card-side-back">B</div>
-        </div>
+        <!-- </div> -->
     </div>
 </body>
 </html>

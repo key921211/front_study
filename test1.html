@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <script>
+        // function formatDate(userDate) {
+        //     // format from M/D/YYYY to YYYYMMDD
+            
+        //     let dateSplit = userDate.split('\/');
+            
+        //     const year = dateSplit[2];
+        //     const month = dateSplit[0];
+        //     const date = dateSplit[1];
+            
+        //     if(month < 10) {
+        //         month = "0" + month;
+        //     }
+            
+        //     if(date < 10) {
+        //         date = "0" + date;
+        //     }
+
+            
+            
+        //     return year + "" + month + "" + date;
+        // }
+
+
+        // console.log(formatDate("7/1/2014"));
+
+    // function setup() {
+    // // Write your code here.
+    
+    //     let image = document.querySelectorAll(".image");
+    //     console.log(image);
+    // }
+
+    // // Example case. 
+    // document.body.innerHTML = `
+    // <div class="image">
+    // <img src="https://goo.gl/kjzfbE" alt="First">
+    // <button class="remove">X</button>
+    // </div>
+    // <div class="image">
+    // <img src="https://goo.gl/d2JncW" alt="Second">
+    // <button class="remove">X</button>
+    // </div>`;
+
+    // setup();
+
+    // document.getElementsByClassName("remove")[0].click();
+    // console.log(document.body.innerHTML);
+
+
+
+//     function ensure(value) {
+//   // Your code goes here
+//   if(value == undefined) {
+//     throw new Error('error');
+//   } else {
+//     return value;
+//   }
+  
+// }
+
+// try {
+//   console.log(ensure());
+// } catch(err) {
+//   console.log(err);
+// }
+
+
+
+function createCheckDigit(membershipId) {
+
+   
+    let sum = 0;
+   //
+    let result = Number.parseInt(membershipId);
+     console.log(result);
+     while(result >= 10) {
+
+        let arr = membershipId.split("");
+        console.log(arr);
+        for(let a in arr){
+             sum += parseInt(arr[a]);
+        }
+       
+        membershipId = sum.toString();
+        result = sum;
+     }
+
+     console.log(membershipId);
+  return 0;
+}
+
+console.log(createCheckDigit("55555"));
+</script>
+</body>
+</html>
