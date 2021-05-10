@@ -1,0 +1,21 @@
+(function() {
+
+    const houseElem = document.querySelector('.house');
+    const barElem = document.querySelector('.progress-bar');
+    let maxScrollValue;
+
+    function resizeHandler() {
+        maxScrollValue = document.body.offsetHeight - window.innerHeight;  //현재문서 높이에서 윈도우 높이를 뺀 값
+    }
+    window.addEventListener('scroll', function() {
+        const scrollPer = pageYOffset / maxScrollValue; // 전체에서 얼만큼 스크롤 했는지 
+        const zMove = scrollPer * 980 - 490; //css house에 준 -490 값을 똑같이 적용
+        houseElem.style.transform = 'translateZ(' + zMove + 'vw)';
+
+        /* progress bar */
+        barElem.style.width = scrollPer * 100 + '%';
+    });
+
+    window.addEventListener('resize', resizeHandler); //창사이즈가 바뀔때 값을 갱신 해준다.
+    resizeHandler();
+})();
