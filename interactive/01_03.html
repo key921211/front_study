@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @keyframes spaceship-ani {
+            to {
+                background-position: -2550px 0;
+            }
+        }
+        .spaceship {
+            width: 150px;
+            height: 150px;
+            background: url('images/sprite_spaceship.png') no-repeat 0 0 / auto 150px; /*처음 위치 0 0 고화질로 보여지게 하기위해 기본 이미지 사이즈 보다 1/2 작게 표현, 높이 150에 맞게 넓이를 auto*/
+            animation: spaceship-ani 1s infinite steps(17); /*steps로 단계별로 보이도록*/
+        }
+    </style>
+</head>
+<body>
+    <div class="spaceship"></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: cornflowerblue;
+            height: 80px;
+            width: 150px;
+            margin: 5px 10px;
+            border-radius: 10px;
+        }
+        .menu-btn img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="menu">
+        <div class="menu-btn" data-value="1">
+            <img src="./images/ilbuni_1.png" alt="" class="icon">
+            <span class="btn-label">일분이 1</span>
+        </div>
+        <div class="menu-btn" data-value="2">
+            <img src="./images/ilbuni_2.png" alt="" class="icon">
+            <span class="btn-label">일분이 2</span>
+        </div>
+        <div class="menu-btn" data-value="3">
+            <img src="./images/ilbuni_3.png" alt="" class="icon">
+            <span class="btn-label">일분이 3</span>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+
+            const menu = document.querySelector('.menu');
+    
+            function clickBtnHandler(event) {
+                let elem = event.target;
+                while (!elem.classList.contains('menu-btn')) {
+                    elem = elem.parentNode;
+
+                    if(elem.nodeName == 'BODY') {
+                        elem = null;
+                        return;
+                    }
+                }
+
+                console.log(elem.dataset.value);
+            }
+            
+            menu.addEventListener('click', clickBtnHandler);
+        })();
+
+    </script>
+</body>
+</html>

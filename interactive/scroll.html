@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        img {
+            max-width: 100%;
+        }
+        .content {
+            height: 1000vh;
+            padding: 20%;
+            background: yellowgreen;
+        }
+        .output {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            font-size: 2rem;
+            font-weight: 200;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .ilbuni {
+            width: 100px;
+            margin: 20px auto;
+            transition: 1s;
+        }
+        .ilbuni.zoom {
+            transform: scale(2);
+        }
+    </style>
+</head>
+<body>
+    <div class="output">output</div>
+    <div class="content">
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque minima laboriosam quo ad ab incidunt recusandae
+            reprehenderit, perspiciatis tenetur fugit fugiat voluptate eius sed facere optio sunt! Magnam harum atque incidunt animi
+            totam maxime laborum quasi eum eveniet vero? Ad asperiores inventore optio atque minus, rerum magni suscipit harum
+            deserunt nihil vel molestiae, quaerat esse corporis earum assumenda velit aspernatur? Sint, odit. Voluptatibus
+            perspiciatis culpa quia illum voluptas optio nihil quaerat? Unde, nobis minima. Dolorem corporis asperiores dolorum vel
+            saepe praesentium inventore amet ut, et illo aliquam repellendus harum laboriosam quas dolores illum unde vero
+            voluptatibus fuga. Blanditiis, assumenda aspernatur.Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque
+            minima laboriosam quo ad ab incidunt recusandae
+            reprehenderit, perspiciatis tenetur fugit fugiat voluptate eius sed facere optio sunt! Magnam harum atque incidunt animi
+            totam maxime laborum quasi eum eveniet vero? Ad asperiores inventore optio atque minus, rerum magni suscipit harum
+            deserunt nihil vel molestiae, quaerat esse corporis earum assumenda velit aspernatur? Sint, odit. Voluptatibus
+            perspiciatis culpa quia illum voluptas optio nihil quaerat? Unde, nobis minima. Dolorem corporis asperiores dolorum vel
+            saepe praesentium inventore amet ut, et illo aliquam repellendus harum laboriosam quas dolores illum unde vero
+            voluptatibus fuga. Blanditiis, assumenda aspernatur.
+        </p>
+        <figure class="ilbuni">
+            <img src="images/ilbuni_0.png" alt="일분이">
+        </figure>
+    </div>
+    
+    <script>
+        (function(){
+            const outputElem = document.querySelector('.output');
+            const ilbuniElem = document.querySelector('.ilbuni');
+            
+            function showValue() {
+                // outputElem.innerHTML = window.pageYOffset; //스크롤을 얼마나 했는지 알수 있는 속성
+                //outputElem.innerHTML = ilbuniElem.offsetTop; //처음위치만 가져옴 (스크롤 될때 위치 x)
+                //outputElem.innerHTML = ilbuniElem.getBoundingClientRect().top; 
+
+                let posY = ilbuniElem.getBoundingClientRect().top; 
+                outputElem.innerHTML = posY;
+
+                if(posY < window.innerHeight * 0.2) { //웹페이지의 높이값 
+
+                    ilbuniElem.classList.add('zoom');
+
+                } else {
+
+                    ilbuniElem.classList.remove('zoom');
+                }
+
+            }
+            
+            window.addEventListener('scroll', function() {
+                showValue();
+            });
+        })()
+    </script>
+</body>
+</html>

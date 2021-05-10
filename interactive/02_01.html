@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .stage {
+            overflow: hidden;
+            position: relative;
+            width: 100vw;
+            height: 75vw;
+            background-color: cadetblue;
+        }
+
+        @keyframes moving {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(90vw);
+            }
+        }
+
+        .ilbuni {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            background-size: contain;
+            animation: moving infinite alternate;
+        }
+
+        .ilbuni:nth-of-type(1) {
+            left: 5%;
+            bottom: 5%;
+            background-image: url('./images/ilbuni_0.png');
+            animation-duration: 4s;
+        }
+
+        .ilbuni:nth-of-type(2) {
+            left: 3%;
+            bottom: 10%;
+            background-image: url('./images/ilbuni_1.png');
+            animation-duration: 5s;
+        }
+
+        .ilbuni:nth-of-type(3) {
+            left: 7%;
+            bottom: 7%;
+            background-image: url('./images/ilbuni_2.png');
+            animation-duration: 6s;
+        }
+
+        .special {
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="stage">
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+        <div class="ilbuni"></div>
+    </div>
+
+    <script>
+        (function() {
+            //const libuniGroup = document.querySelectorAll('.ilbuni');
+            const stage = document.querySelector('.stage');
+
+            function clickHandler(e) {
+                //stage.removeChild(this);
+                //this.parentNode.removeChild(this);
+                //this.classList.toggle('special');
+                if(e.target.classList.contains('ilbuni')) {
+
+                    stage.removeChild(e.target);
+                }
+            }
+
+            //횟수가 많아지면 성능이 줄어듦
+            // for(let i = 0; i < libuniGroup.length; i++) {
+
+            //     libuniGroup[i].addEventListener('click', clickHandler);
+            // }
+
+            stage.addEventListener('click', clickHandler);
+        })();
+    </script>
+</body>
+</html>
