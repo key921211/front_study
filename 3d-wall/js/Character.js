@@ -29,5 +29,25 @@ function Character(info) {
 
     document.querySelector('.stage').appendChild(this.mainElem);
     this.mainElem.style.left = info.xPos + '%';
-    
+    this.scrollState = false; //스크롤 중인지 아닌지 체크하는 변수 
+    this.init();
+}
+
+Character.prototype = {
+    constructor: Character,
+    init : function () {
+        const self = this;
+        window.addEventListener('scroll', function () {
+            clearTimeout(self.scrollState);
+
+            if(!self.scrollState) {
+                self.mainElem.classList.add('running');    
+            }
+
+            self.scrollState = this.setTimeout(function () {
+                self.scrollState = false;
+                self.mainElem.classList.remove('running');
+            }, 500);
+        });
+    }
 }
