@@ -1,3 +1,7 @@
+@keyframes ani-head {
+    to { transform: rotateX(-10deg)}
+}
+
 body {
     height: 500vw;
     font-family: 'Apple SD Gothic Neo', 'Roboto', 'Noto Sans KR', NanumGothic, 'Malgun Gothic', sans-serif;
@@ -99,7 +103,7 @@ body {
     background-position: 0 0;
     background-size: cover;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    backface-visibility: hidden; /*뒤집힌 상태에서 뒷면이 안보이게 설정*/
 }
 .character-face.face-back {
     transform: rotateY(180deg);

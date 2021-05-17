@@ -27,4 +27,6 @@
 
     window.addEventListener('resize', resizeHandler); //창사이즈가 바뀔때 값을 갱신 해준다.
     resizeHandler();
+
+    new Character();
 })();
