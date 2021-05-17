@@ -1,4 +1,4 @@
-function Character() {
+function Character(info) {
     this.mainElem = document.createElement('div');
     this.mainElem.classList.add('character');
     this.mainElem.innerHTML = ''
@@ -26,6 +26,8 @@ function Character() {
                     + '<div class="character-face character-leg-face face-front"></div>'
                     + '<div class="character-face character-leg-face face-back"></div>'
                 + '</div>';
-                
+
     document.querySelector('.stage').appendChild(this.mainElem);
+    this.mainElem.style.left = info.xPos + '%';
+    
 }
