@@ -56,7 +56,7 @@ Character.prototype = {
             self.scrollState = this.setTimeout(function () {
                 self.scrollState = false;
                 self.mainElem.classList.remove('running');
-            }, 500);
+            }, 100);
 
             // 이전 스크롤위치와 현재 스크롤위치를 비교 
             if(self.lastScrollTop > pageYOffset) {
@@ -89,6 +89,7 @@ Character.prototype = {
                 self.mainElem.classList.add('running');
                 self.run(self);
                 // self.run();
+                self.runningState = true;
             }
         });
 
