@@ -29,7 +29,15 @@ function Character(info) {
 
     document.querySelector('.stage').appendChild(this.mainElem);
     this.mainElem.style.left = info.xPos + '%';
-    this.scrollState = false; //스크롤 중인지 아닌지 체크하는 변수 
+    // 스크롤 중인지 아닌지 체크하는 변수 
+    this.scrollState = false; 
+    // 바로 이전(마지막) 스크롤 위치
+    this.lastScrollTop = 0;
+    this.xPos = info.xPos;
+    this.speed = info.speed;
+    this.direction;
+    // 좌우 이동 중인지 아닌지 
+    this.runningState = false;
     this.init();
 }
 
@@ -37,6 +45,7 @@ Character.prototype = {
     constructor: Character,
     init : function () {
         const self = this;
+
         window.addEventListener('scroll', function () {
             clearTimeout(self.scrollState);
 
@@ -48,6 +57,92 @@ Character.prototype = {
                 self.scrollState = false;
                 self.mainElem.classList.remove('running');
             }, 500);
+
+            // 이전 스크롤위치와 현재 스크롤위치를 비교 
+            if(self.lastScrollTop > pageYOffset) {
+                // 이전 스크롤 위치가 크다면 : 스크롤 올린거
+                self.mainElem.setAttribute('data-direction', 'backward');
+            } else {
+                // 현재 스크롤 위치가 크다면 : 스크롤 내린거
+                self.mainElem.setAttribute('data-direction', 'forward');
+            }
+            self.lastScrollTop = pageYOffset;
+        });
+
+        window.addEventListener('keydown', function (e) { 
+
+            if (self.runningState) return;
+           
+            if(e.keyCode == 37) {
+                // 왼쪽
+                self.direction = 'left';
+                self.mainElem.setAttribute('data-direction', 'left');
+                self.mainElem.classList.add('running');
+                self.run(self);
+                // self.run();
+                self.runningState = true;
+                
+            } else if(e.keyCode == 39) {
+                //오른쪽
+                self.direction = 'right';
+                self.mainElem.setAttribute('data-direction', 'right');
+                self.mainElem.classList.add('running');
+                self.run(self);
+                // self.run();
+            }
+        });
+
+        window.addEventListener('keyup', function (e) {
+            self.mainElem.classList.remove('running');
+            this.cancelAnimationFrame(self.rafId);
+            self.runningState = false;
+        })
+    },
+
+    /**requestAnimationFrame 때문에 context가 바껴서 this가 가르키는 애가 바뀜. */
+    
+    // 1. 함수의 매개변수로 전달해서 this를 살리는 방법
+    run: function (self) {
+
+        if (self.direction == 'left') {
+            self.xPos -= self.speed;
+        } else if(self.direction == 'right') {
+            self.xPos += self.speed;
+        }
+
+        if (self.xPos < 2) {
+            self.xPos = 2;
+        }
+        if (self.xPos > 88) {
+            self.xPos = 88;
+        }
+        
+        self.mainElem.style.left = self.xPos + '%';
+        self.rafId = requestAnimationFrame(function () {
+            self.run(self);
         });
     }
+
+    /** bind를 사용해서 this를 직접 지정하기 */
+    // run: function () {
+
+    //     const self = this;
+
+    //     if(self.direction == 'left') {
+    //         self.xPos -= self.speed;
+    //     } else if(self.direction == 'right') {
+    //         self.xPos += self.speed;
+    //     }
+
+    //     if (self.xPos < 2) {
+    //         self.xPos = 2;
+    //     }
+    //     if (self.xPos > 88) {
+    //         self.xPos = 88;
+    //     }
+
+    //     self.mainElem.style.left = self.xPos + '%';
+    //     self.rafId = requestAnimationFrame(self.run.bind(self));
+    // }
+    
 }
